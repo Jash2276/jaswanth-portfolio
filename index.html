@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jaswanth Reddy | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-base: #0a0a0c;
+      --card-bg: rgba(18, 18, 22, 0.85);
+      --card-border: rgba(212, 175, 55, 0.16);
+      --card-border-hover: rgba(212, 175, 55, 0.55);
+      
+      --gold-light: #f6e6b4;
+      --gold-primary: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.22);
+      
+      --text-main: #f5f5f7;
+      --text-muted: #9e9ea7;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* Ambient cursor spotlight rendered efficiently via CSS */
+    .spotlight-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+        rgba(212, 175, 55, 0.08),
+        transparent 70%
+      );
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 10, 12, 0.85);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .brand-logo span {
+      color: var(--gold-primary);
+    }
+
+    .brand-logo:hover {
+      color: var(--gold-light);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold-light);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    /* Hero Top Row */
+    .hero-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-primary);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--gold-primary);
+    }
+
+    .hero-text-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-text-link {
+      color: var(--text-main);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
+      padding-bottom: 2px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .hero-text-link:hover {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-primary);
+      text-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* Main Name Hook */
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .hero h1:hover {
+      transform: scale(1.01);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #ffffff 15%, #f6e6b4 45%, #d4af37 75%, #aa820a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--gold-light);
+      font-family: var(--font-display);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin-bottom: 2.25rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f6e6b4 0%, #d4af37 50%, #aa820a 100%);
+      color: #0a0a0c;
+      border: 1px solid var(--gold-light);
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+    }
+
+    .btn-outline {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-primary);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .interactive-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .interactive-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--gold-glow);
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .interactive-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+      transition: color 0.2s ease;
+    }
+
+    .interactive-card:hover h3 {
+      color: var(--gold-light);
+    }
+
+    .interactive-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .card-links-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .card-footer-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .live-link-btn {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .live-link-btn:hover {
+      background: var(--gold-primary);
+      color: #0a0a0c;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 6px;
+      color: #d1d1d6;
+    }
+
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.1rem 1.25rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .skill-box:hover {
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    }
+
+    .skill-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-primary);
+    }
+
+    .skill-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Modal Layer */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 8, 10, 0.85);
+      backdrop-filter: blur(14px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: #121217;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 16px;
+      max-width: 680px;
+      width: 100%;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--gold-glow);
+      transform: translateY(15px);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-backdrop.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--gold-primary);
+      color: #0a0a0c;
+    }
+
+    .modal-header-tag {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body {
+      color: #d1d1d6;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .modal-body ul {
+      margin: 1.25rem 0 1.5rem 1.5rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-modal-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+    }
+
+    .profile-photo-wrapper {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      border: 3px solid var(--gold-primary);
+      box-shadow: 0 0 25px var(--gold-glow);
+      overflow: hidden;
+      background: #18181f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lightweight CSS-driven ambient glow -->
+  <div class="spotlight-bg"></div>
+
+  <nav>
+    <a href="#" class="brand-logo">Jaswanth<span>.</span></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="hero-top-row">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Available for Engineering & AI Roles
+        </div>
+        <div class="hero-text-links">
+          <a href="javascript:void(0)" class="hero-text-link" data-modal="profile-modal">View Profile Photo</a>
+          <span style="color: rgba(212, 175, 55, 0.4);">/</span>
+          <a href="https://tokyorado.store.shoopy.in/" target="_blank" class="hero-text-link">TokyoRado Store ↗</a>
+        </div>
+      </div>
+
+      <!-- Jaswanth Reddy Main Hook Headline -->
+      <h1 class="gold-gradient-text" data-modal="profile-modal" title="Click to view profile photo">
+        Jaswanth Reddy
+      </h1>
+      <div class="hero-tagline">Engineering Intelligent Systems Through Code & Visual Design</div>
+
+      <p>
+        Computer Science & Engineering student at Siddhartha Academy of Higher Education (SAHE). Founder of TokyoRado, specializing in AI response evaluation, data annotation, workflow automation, and digital branding.
+      </p>
+
+      <div class="btn-group">
+        <a href="#projects" class="btn btn-gold">View Projects & Work</a>
+        <a href="https://tokyorado.store.shoopy.in/" target="_blank" class="btn btn-outline">TokyoRado Store ↗</a>
+        <a href="https://www.linkedin.com/in/jaswanth-reddy-9b122133a/" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jaswanthreddyofficial1@gmail.com" target="_blank" class="btn btn-outline">Contact Directly</a>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-header">
+        <span class="section-tag">Interactive Portfolio</span>
+        <h2 class="section-title">Featured Work (Click to Open)</h2>
+      </div>
+      
+      <div class="grid">
+        <div class="interactive-card" data-modal="tokyorado">
+          <div class="card-meta">Founder & Lead Designer</div>
+          <h3>TokyoRado Store & Brand Ecosystem</h3>
+          <p>
+            End-to-end design, custom merchandise assets, and live e-commerce operations for TokyoRado.
+          </p>
+          <div class="tag-container">
+            <span class="tag">Live Store</span>
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">E-Commerce</span>
+          </div>
+          <div class="card-links-row">
+            <div class="card-footer-cta">Details →</div>
+            <a href="https://tokyorado.store.shoopy.in/" target="_blank" class="live-link-btn" onclick="event.stopPropagation()">
+              Visit Store ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="interactive-card" data-modal="ai-research">
+          <div class="card-meta">AI Ops & Research</div>
+          <h3>AI Research & Workflow Optimization</h3>
+          <p>
+            Deep prompt engineering, LLM benchmark analysis, and content summarization frameworks.
+          </p>
+          <div class="tag-container">
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">Data Annotation</span>
+            <span class="tag">LLM Evaluation</span>
+          </div>
+          <div class="card-links-row">
+            <div class="card-footer-cta">Click for workflow & insights →</div>
+          </div>
+        </div>
+
+        <div class="interactive-card" data-modal="digital-media">
+          <div class="card-meta">Creative Production</div>
+          <h3>Digital Media & Video Engineering</h3>
+          <p>
+            High-converting social creatives, video editing pipelines, and promotional assets.
+          </p>
+          <div class="tag-container">
+            <span class="tag">Video Editing</span>
+            <span class="tag">Graphic Design</span>
+            <span class="tag">Visual Layout</span>
+          </div>
+          <div class="card-links-row">
+            <div class="card-footer-cta">Click for production overview →</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-header">
+        <span class="section-tag">Core Stack</span>
+        <h2 class="section-title">Technical & Creative Stack</h2>
+      </div>
+
+      <div class="skills-wrapper">
+        <div class="skill-box" data-modal="skill-prompt"><span class="skill-indicator"></span><span class="skill-name">Prompt Engineering</span></div>
+        <div class="skill-box" data-modal="skill-eval"><span class="skill-indicator"></span><span class="skill-name">AI Response Evaluation</span></div>
+        <div class="skill-box" data-modal="skill-annotation"><span class="skill-indicator"></span><span class="skill-name">Data Annotation</span></div>
+        <div class="skill-box" data-modal="skill-ps"><span class="skill-indicator"></span><span class="skill-name">Adobe Photoshop</span></div>
+        <div class="skill-box" data-modal="skill-video"><span class="skill-indicator"></span><span class="skill-name">Video Editing</span></div>
+        <div class="skill-box" data-modal="skill-c"><span class="skill-indicator"></span><span class="skill-name">C Programming</span></div>
+        <div class="skill-box" data-modal="skill-web"><span class="skill-indicator"></span><span class="skill-name">HTML5 / CSS3</span></div>
+        <div class="skill-box" data-modal="skill-research"><span class="skill-indicator"></span><span class="skill-name">Internet Research</span></div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-header">
+        <span class="section-tag">Academic Career</span>
+        <h2 class="section-title">Education & Background</h2>
+      </div>
+
+      <div class="interactive-card" data-modal="education-modal" style="border-left: 3px solid var(--gold-primary);">
+        <div class="card-meta">2025 – Present</div>
+        <h3>B.Tech - Computer Science & Engineering</h3>
+        <p>
+          Siddhartha Academy of Higher Education (SAHE) • Andhra Pradesh, India
+        </p>
+        <div class="card-footer-cta" style="margin-top: 1rem;">Click for academic focus & competencies →</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="interactive-card" style="text-align: center; padding: 4rem 2rem; border-color: rgba(212, 175, 55, 0.4);">
+        <span class="section-tag">Direct Inquiries</span>
+        <h2 class="section-title" style="margin-bottom: 1rem;">Let's Build Something High-Impact.</h2>
+        <p style="max-width: 500px; margin: 0 auto 2rem auto;">
+          Open for technical internships, AI data evaluation projects, and design consulting.
+        </p>
+        <div class="btn-group" style="justify-content: center;">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jaswanthreddyofficial1@gmail.com" target="_blank" class="btn btn-gold">Email Jaswanth</a>
+          <a href="tel:+919182779481" class="btn btn-outline">+91 9182779481</a>
+          <a href="https://www.linkedin.com/in/jaswanth-reddy-9b122133a/" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modular Interactive Modal Backdrop -->
+  <div class="modal-backdrop" id="custom-modal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modal-close">&times;</button>
+      <div class="modal-header-tag" id="modal-tag">Project Overview</div>
+      <h2 class="modal-title" id="modal-title">Title Here</h2>
+      <div class="modal-body" id="modal-body">
+        Modal content goes here.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Jaswanth Reddy. Lightweight high-performance portfolio.</p>
+  </footer>
+
+  <script>
+    const modalData = {
+      "profile-modal": {
+        tag: "Founder & Creative Technologist",
+        title: "Jaswanth Reddy",
+        body: `
+          <div class="profile-modal-body">
+            <div class="profile-photo-wrapper">
+              <img src="profile.jpg" alt="Jaswanth Reddy" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Jaswanth+Reddy&background=18181f&color=d4af37&size=256&font-size=0.33&bold=true';" />
+            </div>
+            <div>
+              <p style="font-size: 1.15rem; font-weight: 700; color: #f6e6b4; margin-bottom: 0.25rem;">Jaswanth Reddy</p>
+              <p style="color: #9e9ea7; font-size: 0.95rem; margin-bottom: 1rem;">Computer Science & Engineering Student | Founder of TokyoRado</p>
+              <p style="color: #d1d1d6; font-size: 0.88rem; max-width: 440px; margin: 0 auto;">
+                Displaying <code>profile.jpg</code> directly from your project directory.
+              </p>
+            </div>
+            <div style="margin-top: 0.5rem; display: flex; gap: 0.75rem;">
+              <a href="https://www.linkedin.com/in/jaswanth-reddy-9b122133a/" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 0.6rem 1.25rem;">Open LinkedIn Profile ↗</a>
+            </div>
+          </div>
+        `
+      },
+      "tokyorado": {
+        tag: "Founder & Creative Technologist",
+        title: "TokyoRado - Apparel & Brand Systems",
+        body: `
+          <p>Founded and engineered TokyoRado, a digital apparel merchandise initiative with a live operational e-commerce platform.</p>
+          <ul>
+            <li><strong>Live Storefront:</strong> Deployed and customized on <a href="https://tokyorado.store.shoopy.in/" target="_blank" style="color: #f6e6b4; text-decoration: underline;">tokyorado.store.shoopy.in</a> with catalog structures and checkout.</li>
+            <li><strong>Asset Pipeline:</strong> Designed high-resolution product graphics, mockups, and promotional typography using Adobe Photoshop.</li>
+            <li><strong>Digital Presentation:</strong> Developed visual marketing strategies, lookbooks, and high-impact social layouts.</li>
+            <li><strong>Execution:</strong> Built streamlined order collection workflows and integrated product display cards.</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <a href="https://tokyorado.store.shoopy.in/" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 0.6rem 1.25rem;">Open Live Store ↗</a>
+          </div>
+        `
+      },
+      "ai-research": {
+        tag: "Artificial Intelligence",
+        title: "AI Research, Evaluation & Productivity",
+        body: `
+          <p>Applied technical workflows focused on LLM performance and content evaluation:</p>
+          <ul>
+            <li><strong>Prompt Architecture:</strong> Formulated nuanced system prompts and evaluation rubrics for multi-turn conversational agents.</li>
+            <li><strong>Data Annotation:</strong> Executed precise text labeling, AI response critique, and accuracy validation.</li>
+            <li><strong>Optimization:</strong> Streamlined analytical research and document summarization with state-of-the-art AI tooling.</li>
+          </ul>
+        `
+      },
+      "digital-media": {
+        tag: "Content Strategy",
+        title: "Digital Media & Video Pipelines",
+        body: `
+          <p>Comprehensive creative engineering for digital platforms:</p>
+          <ul>
+            <li><strong>Video Editing:</strong> Edited dynamic short-form videos with pacing, sound design, and kinetic typography.</li>
+            <li><strong>Graphic Design:</strong> Created banners, posters, and thumbnails optimized for high click-through rates.</li>
+            <li><strong>Multi-Channel Strategy:</strong> Scaled cohesive visual themes across web and social touchpoints.</li>
+          </ul>
+        `
+      },
+      "education-modal": {
+        tag: "Academic Background",
+        title: "B.Tech in Computer Science & Engineering",
+        body: `
+          <p><strong>Institution:</strong> Siddhartha Academy of Higher Education (SAHE) (2025–Present)</p>
+          <p><strong>Location:</strong> Andhra Pradesh, India</p>
+          <ul>
+            <li>Focused on Data Structures, C Programming, Algorithms, and Software Engineering Foundations.</li>
+            <li>Hands-on research in applied AI tools, data annotation, and full-stack web development.</li>
+            <li>Maintaining strong problem-solving and technical communication proficiencies.</li>
+          </ul>
+        `
+      },
+      "skill-prompt": {
+        tag: "Skill Focus",
+        title: "Prompt Engineering",
+        body: "<p>Structuring multi-step instructions, chain-of-thought prompting, role-conditioning, and few-shot examples to achieve optimal LLM precision and deterministic outcomes.</p>"
+      },
+      "skill-eval": {
+        tag: "Skill Focus",
+        title: "AI Response Evaluation",
+        body: "<p>Benchmarking model responses against strict criteria including factual accuracy, safety, hallucination avoidance, logic, and context adherence.</p>"
+      },
+      "skill-annotation": {
+        tag: "Skill Focus",
+        title: "Data Annotation & Labeling",
+        body: "<p>Structuring, tagging, and categorizing datasets for training and fine-tuning machine learning models with high attention to detail.</p>"
+      },
+      "skill-ps": {
+        tag: "Skill Focus",
+        title: "Adobe Photoshop",
+        body: "<p>Advanced photo manipulation, branding vector layouts, e-commerce garment mockups, and high-resolution thumbnail development.</p>"
+      },
+      "skill-video": {
+        tag: "Skill Focus",
+        title: "Video Editing & Production",
+        body: "<p>Cutting, color grading, motion graphics, and audio mixing for short-form viral reels, product demos, and technical showcases.</p>"
+      },
+      "skill-c": {
+        tag: "Skill Focus",
+        title: "C Programming & Logic",
+        body: "<p>Strong foundation in memory management, pointer arithmetic, data structures, and core algorithmic problem solving.</p>"
+      },
+      "skill-web": {
+        tag: "Skill Focus",
+        title: "HTML5 & Modern CSS3",
+        body: "<p>Responsive layouts, CSS grid/flexbox architectures, smooth animations, glassmorphism UI, and clean single-page site design.</p>"
+      },
+      "skill-research": {
+        tag: "Skill Focus",
+        title: "Internet Research & Analysis",
+        body: "<p>Deep query formulation, cross-referencing information sources, technical synthesis, and actionable documentation.</p>"
+      }
+    };
+
+    // Ultra-lightweight CSS mouse spotlight update (zero CPU drag)
+    window.addEventListener('mousemove', (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    }, { passive: true });
+
+    // Modal Handling Logic
+    const modalBackdrop = document.getElementById('custom-modal');
+    const modalTag = document.getElementById('modal-tag');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const modalCloseBtn = document.getElementById('modal-close');
+
+    function openModal(key) {
+      const data = modalData[key];
+      if (!data) return;
+
+      modalTag.innerText = data.tag;
+      modalTitle.innerText = data.title;
+      modalBody.innerHTML = data.body;
+      modalBackdrop.classList.add('active');
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.remove('active');
+    }
+
+    document.querySelectorAll('[data-modal]').forEach((elem) => {
+      elem.addEventListener('click', (e) => {
+        e.preventDefault();
+        const modalKey = elem.getAttribute('data-modal');
+        openModal(modalKey);
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
