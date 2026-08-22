@@ -41,7 +41,6 @@
       cursor: default;
     }
 
-    /* Ambient cursor spotlight rendered efficiently via CSS */
     .spotlight-bg {
       position: fixed;
       top: 0;
@@ -117,7 +116,6 @@
       padding: 4rem 0;
     }
 
-    /* Hero Top Row */
     .hero-top-row {
       display: flex;
       flex-wrap: wrap;
@@ -174,7 +172,6 @@
       text-shadow: 0 0 10px var(--gold-glow);
     }
 
-    /* Main Name Hook */
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(3rem, 7vw, 5.2rem);
@@ -413,7 +410,6 @@
       font-weight: 600;
     }
 
-    /* Modal Layer */
     .modal-backdrop {
       position: fixed;
       top: 0;
@@ -510,15 +506,15 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .profile-photo-wrapper {
-      width: 190px;
-      height: 190px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       border: 3px solid var(--gold-primary);
-      box-shadow: 0 0 25px var(--gold-glow);
+      box-shadow: 0 0 30px var(--gold-glow);
       overflow: hidden;
       background: #18181f;
       display: flex;
@@ -549,7 +545,6 @@
 </head>
 <body>
 
-  <!-- Lightweight CSS-driven ambient glow -->
   <div class="spotlight-bg"></div>
 
   <nav>
@@ -577,14 +572,13 @@
         </div>
       </div>
 
-      <!-- Jaswanth Reddy Main Hook Headline -->
       <h1 class="gold-gradient-text" data-modal="profile-modal" title="Click to view profile photo">
         Jaswanth Reddy
       </h1>
       <div class="hero-tagline">Engineering Intelligent Systems Through Code & Visual Design</div>
 
       <p>
-        Computer Science & Engineering student at Siddhartha Academy of Higher Education (SAHE). Founder of TokyoRado, specializing in AI response evaluation, data annotation, workflow automation, and digital branding.
+        Computer Science & Engineering student at Siddhartha Academy of Higher Education (SAHE) and founder of TokyoRado, specializing in AI response evaluation, data annotation, workflow automation, and digital branding.
       </p>
 
       <div class="btn-group">
@@ -706,7 +700,6 @@
     </section>
   </main>
 
-  <!-- Modular Interactive Modal Backdrop -->
   <div class="modal-backdrop" id="custom-modal">
     <div class="modal-content">
       <button class="modal-close-btn" id="modal-close">&times;</button>
@@ -730,14 +723,11 @@
         body: `
           <div class="profile-modal-body">
             <div class="profile-photo-wrapper">
-              <img src="profile.jpg" alt="Jaswanth Reddy" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Jaswanth+Reddy&background=18181f&color=d4af37&size=256&font-size=0.33&bold=true';" />
+              <img src="profile.jpg" alt="Jaswanth Reddy" />
             </div>
             <div>
-              <p style="font-size: 1.15rem; font-weight: 700; color: #f6e6b4; margin-bottom: 0.25rem;">Jaswanth Reddy</p>
-              <p style="color: #9e9ea7; font-size: 0.95rem; margin-bottom: 1rem;">Computer Science & Engineering Student | Founder of TokyoRado</p>
-              <p style="color: #d1d1d6; font-size: 0.88rem; max-width: 440px; margin: 0 auto;">
-                Displaying <code>profile.jpg</code> directly from your project directory.
-              </p>
+              <p style="font-size: 1.2rem; font-weight: 700; color: #f6e6b4; margin-bottom: 0.25rem;">Jaswanth Reddy</p>
+              <p style="color: #9e9ea7; font-size: 0.95rem;">Computer Science & Engineering Student | Founder of TokyoRado</p>
             </div>
             <div style="margin-top: 0.5rem; display: flex; gap: 0.75rem;">
               <a href="https://www.linkedin.com/in/jaswanth-reddy-9b122133a/" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 0.6rem 1.25rem;">Open LinkedIn Profile ↗</a>
@@ -840,13 +830,11 @@
       }
     };
 
-    // Ultra-lightweight CSS mouse spotlight update (zero CPU drag)
     window.addEventListener('mousemove', (e) => {
       document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
       document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
     }, { passive: true });
 
-    // Modal Handling Logic
     const modalBackdrop = document.getElementById('custom-modal');
     const modalTag = document.getElementById('modal-tag');
     const modalTitle = document.getElementById('modal-title');
